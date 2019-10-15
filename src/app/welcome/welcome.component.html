@@ -1,6 +1,20 @@
-
+<div class="container">
 <p>This is welcome component</p>
 <p>Welcome  {{name}} </p>
+</div>
 
-<span>Manage your todos <a routerLink="/todos" >here</a></span>
+<div class="container">Manage your todos <a routerLink="/todos" >here</a></div>
+
+<div class="container">
+    Click here to get personalized message
+    <button class="btn btn-success" (click)="getWelcomeMessageWithPathVariable()">Get Personalized message</button>
+</div>
+
+<div class="container" *ngIf="handleSuccessfulResponse" >
+    {{ messageFromService }}
+</div>
+
+<div class="container" *ngIf="handleErrorException">
+    {{ errorMessage }}
+</div>
 
