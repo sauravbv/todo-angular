@@ -12,6 +12,7 @@
       <th scope="col">Description</th>
       <th scope="col">Target Date</th>
       <th scope="col">Status</th>
+      <th scope="col">Update</th>
       <th scope="col">Delete</th>
       
   </thead>
@@ -21,10 +22,16 @@
       <td> {{todo.description}} </td>
       <td> {{todo.targetDate | date | uppercase }} </td>
       <td> {{todo.status}} </td>
-      <td><button (click) = "deleteTodo(todo.id)">Delete</button></td>
+      <td><button class="btn btn-success" (click) = "updateTodo(todo.id)">Update</button></td>
+      <td><button class="btn btn-danger" (click) = "deleteTodo(todo.id)">Delete</button></td>
+      
     </tr>
   </tbody>
   
 
 </table>
+
+<div class="row">
+  <button class="btn btn-primary" (click)="createTodo()">Add Todo</button>
+</div>
 </div>

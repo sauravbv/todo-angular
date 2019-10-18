@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class Todo{
   constructor(
     public id: number,
-    public username: string,
+  
     public description: string,
     public status: boolean,
     public targetDate: Date
@@ -30,7 +30,8 @@ export class ListTodosComponent   {
   
   constructor(
     private todosService: TodoDataService,
-    private router: ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     console.log('twi');
    }
@@ -42,7 +43,7 @@ export class ListTodosComponent   {
   deleteMessage: String;
 
    ngOnInit() {
-     this.username = this.router.snapshot.params['username'] 
+     
     this.refreshTodos()
   }
 
@@ -54,12 +55,23 @@ export class ListTodosComponent   {
   }
 
   deleteTodo(id){
-    console.log('delete works')
-    
-    this.todosService.deleteTodoService('saurav',id).subscribe(response => {
-      console.log('lolwa')
+   
+    this.todosService.deleteTodoService('saurav',id).subscribe(
+      response => {
       this.deleteMessage = `Delete of todo ${id} Successfull`;
+      this.refreshTodos();
       });
   
   }
+
+  updateTodo(id){
+    this.router.navigate(['todos',id])
+    console.log(id);
+  }
+
+  createTodo(){
+    this.router.navigate(['todos',-1])
+  }
+
+  
 }
