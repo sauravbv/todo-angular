@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
-export class HelloWorldBean{
+export class HelloWorldBean {
   constructor(
     private message: string
-  ){
+  ) {
 
   }
 }
@@ -20,15 +20,28 @@ export class WelcomeDataService {
     private http: HttpClient
   ) { }
 
-  getWelcomeMessageService(){
+  getWelcomeMessageService() {
     return this.http.get<HelloWorldBean>('http://localhost:8081/hello-world-bean');
     console.log('welcome service is working');
   }
 
-  getWelcomeMessageServiceWithPathVariable(name){
-    return this.http.get<HelloWorldBean>(`http://localhost:8081/hello-world-bean/path-variable/${name}`);
+  getWelcomeMessageServiceWithPathVariable(name) {
+    // let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
+
+    // let headers = new HttpHeaders({
+    //   Authorization: basicAuthHeaderString
+    // })
+
+    return this.http.get<HelloWorldBean>(`http://localhost:8081/hello-world-bean/path-variable/${name}`,
+    {headers});
     console.log('welcome service is working');
   }
 
-
+  createBasicAuthenticationHttpHeader() {
+    let user = 'saurav'
+    let password = 'saurav123'
+    let basicAuthHeaderString = 'Basic ' + window.btoa(user+ ':' +password);
+    console.log(basicAuthHeaderString)
+    return basicAuthHeaderString;
+  }
 }
