@@ -38,12 +38,10 @@ export class LoginComponent implements OnInit {
 
   }
 
-  handleBasicAuthLogin(){
-    console.log('username: ' +this.username);
-    console.log('password: ' +this.password)
 
-    // if(this.username==='saurav' && this.password==='saurav123')
-    if(this.basicAuth.executeAuthenticationService(this.username, this.password)
+  handleJWTAuthLogin(){
+
+    if(this.basicAuth.executeJWTAuthenticationService(this.username, this.password)
       .subscribe(
         data => {
           console.log(data)
@@ -66,5 +64,36 @@ export class LoginComponent implements OnInit {
     }
 
   }
+
+
+
+  // handleBasicAuthLogin(){
+  //   console.log('username: ' +this.username);
+  //   console.log('password: ' +this.password)
+
+  //   // if(this.username==='saurav' && this.password==='saurav123')
+  //   if(this.basicAuth.executeAuthenticationService(this.username, this.password)
+  //     .subscribe(
+  //       data => {
+  //         console.log(data)
+  //         this.router.navigate(['welcome',this.username])
+  //         this.errorFlag=false;
+  //       },
+  //       error => {
+  //         console.log(error)
+  //         this.errorFlag=true;
+  //       }
+  //     )
+    
+  //   )
+   
+  //   {
+  //     this.errorFlag=false;
+  //     this.router.navigate(['welcome',this.username])
+  //   }else{
+  //     this.errorFlag=true;
+  //   }
+
+  // }
 
 }

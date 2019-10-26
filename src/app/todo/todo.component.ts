@@ -29,10 +29,9 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo(){
-      if(this.id===-1){
+      if(this.id==-1){
       this.todoService.createTodo('saurav',this.todo).subscribe(
-        response => data =>
-        {
+        data => {
         console.log(data);
         this.router.navigate(['todos'])
        }
@@ -40,12 +39,11 @@ export class TodoComponent implements OnInit {
 
     }else
     {
-    this.todoService.updateTodo('saurav',this.id, this.todo).subscribe(
-      response => {
-        data => {
-        console.log(data);}
-         this.router.navigate(['todos'])
-      });
+    this.todoService.updateTodo('saurav',this.id, this.todo).subscribe( data => {
+        console.log(data);
+         this.router.navigate(['todos'])}
+      
+      )}
   }
 
-}}
+}
